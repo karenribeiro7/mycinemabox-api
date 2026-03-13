@@ -63,9 +63,9 @@ npm install
 
 Crie o arquivo `.env` na raiz do projeto com o seguinte conteudo:
 
-\```
+```
 DATABASE_URL="file:./dev.db"
-\```
+```
 
 Crie o banco de dados:
 
