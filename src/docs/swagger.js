@@ -44,77 +44,91 @@ module.exports = swaggerSpec;
  *           type: integer
  *         comment:
  *           type: string
+ *     User:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         name:
+ *           type: string
+ *         email:
+ *           type: string
  */
 
 /**
  * @swagger
- * /register:
+ * /users/register:
  *   post:
- *    summary: Registra um novo usuario
- *    tags: [Users]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            required:
- *              - name
- *              - email
- *              - password
- *            properties:
- *              name:
- *               type: string
- *              email:
- *                type: string
- *              password:
- *                type: string
- *   responses:
- *    201:
- *      description: Usuario criado com sucesso
- *      content:
- *        application/json:
- *          schema:
- *           $ref: '#/components/schemas/User'  
-  *    400:
- *      description: Dados invalidos
-  *    409:
- *      description: Usuario ja cadastrado
+ *     summary: Cadastra um novo usuario
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - email
+ *               - password
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Usuario cadastrado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Todos os campos sao obrigatorios
+ *       409:
+ *         description: Email ja cadastrado
+ */
 
+/**
  * @swagger
- * /login:
+ * /users/login:
  *   post:
- *     summary: Faz o login de um usuario e retorna o token JWT
- *    tags: [Users]
- *   requestBody:
- *    required: true
- *   content:
- *     application/json:
- *      schema:
- *       type: object
- *      required:
- *       - email
- *      - password
- *     properties:
- *      email:
- *        type: string
- *     password:
- *        type: string
- *  responses:
- *   200:
- *    description: Login bem sucedido, retorna token JWT
- *  content:
- *   application/json:
- *    schema:
- *    type: object
- *   properties:
- *    token:
- *     type: string
- *  400:
- *  description: Dados invalidos
- *  401:
- * description: Credenciais invalidas
- * @swagger 
+ *     summary: Realiza o login e retorna o token JWT
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *       400:
+ *         description: Todos os campos sao obrigatorios
+ *       401:
+ *         description: Email ou senha invalidos
+ */
+
+/**
+ * @swagger
  * /genres:
  *   get:
  *     summary: Lista todos os generos
@@ -131,12 +145,16 @@ module.exports = swaggerSpec;
  *   post:
  *     summary: Cria um genero
  *     tags: [Genres]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - name
  *             properties:
  *               name:
  *                 type: string
@@ -145,6 +163,8 @@ module.exports = swaggerSpec;
  *         description: Genero criado com sucesso
  *       400:
  *         description: Nome e obrigatorio
+ *       401:
+ *         description: Token nao informado ou invalido
  */
 
 /**
@@ -165,6 +185,8 @@ module.exports = swaggerSpec;
  *   post:
  *     summary: Cria um filme
  *     tags: [Movies]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -195,6 +217,8 @@ module.exports = swaggerSpec;
  *         description: Filme criado com sucesso
  *       400:
  *         description: Campos obrigatorios faltando
+ *       401:
+ *         description: Token nao informado ou invalido
  *       409:
  *         description: Filme ja cadastrado
  */
@@ -214,11 +238,17 @@ module.exports = swaggerSpec;
  *     responses:
  *       200:
  *         description: Filme encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Movie'
  *       404:
  *         description: Filme nao encontrado
  *   put:
  *     summary: Atualiza um filme
  *     tags: [Movies]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -247,11 +277,15 @@ module.exports = swaggerSpec;
  *     responses:
  *       200:
  *         description: Filme atualizado com sucesso
+ *       401:
+ *         description: Token nao informado ou invalido
  *       404:
  *         description: Filme nao encontrado
  *   delete:
  *     summary: Deleta um filme
  *     tags: [Movies]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -261,6 +295,8 @@ module.exports = swaggerSpec;
  *     responses:
  *       204:
  *         description: Filme deletado com sucesso
+ *       401:
+ *         description: Token nao informado ou invalido
  *       404:
  *         description: Filme nao encontrado
  */
