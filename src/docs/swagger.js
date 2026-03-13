@@ -48,6 +48,73 @@ module.exports = swaggerSpec;
 
 /**
  * @swagger
+ * /register:
+ *   post:
+ *    summary: Registra um novo usuario
+ *    tags: [Users]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            required:
+ *              - name
+ *              - email
+ *              - password
+ *            properties:
+ *              name:
+ *               type: string
+ *              email:
+ *                type: string
+ *              password:
+ *                type: string
+ *   responses:
+ *    201:
+ *      description: Usuario criado com sucesso
+ *      content:
+ *        application/json:
+ *          schema:
+ *           $ref: '#/components/schemas/User'  
+  *    400:
+ *      description: Dados invalidos
+  *    409:
+ *      description: Usuario ja cadastrado
+
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Faz o login de um usuario e retorna o token JWT
+ *    tags: [Users]
+ *   requestBody:
+ *    required: true
+ *   content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *      required:
+ *       - email
+ *      - password
+ *     properties:
+ *      email:
+ *        type: string
+ *     password:
+ *        type: string
+ *  responses:
+ *   200:
+ *    description: Login bem sucedido, retorna token JWT
+ *  content:
+ *   application/json:
+ *    schema:
+ *    type: object
+ *   properties:
+ *    token:
+ *     type: string
+ *  400:
+ *  description: Dados invalidos
+ *  401:
+ * description: Credenciais invalidas
+ * @swagger 
  * /genres:
  *   get:
  *     summary: Lista todos os generos
