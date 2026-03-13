@@ -92,3 +92,17 @@ A API estara disponivel em `http://localhost:3000`.
 | POST | /movies | Cria um filme |
 | PUT | /movies/:id | Atualiza um filme |
 | DELETE | /movies/:id | Deleta um filme |
+
+---
+
+## Documentacao
+
+A documentacao da API foi feita com Swagger e pode ser acessada pelo navegador apos rodar o servidor.
+
+Acesse em:
+
+```
+http://localhost:3000/api-docs
+```
+
+Na interface do Swagger e possivel visualizar todos os endpoints disponiveis, os campos obrigatorios de cada requisicao e testar a API diretamente pelo navegador sem precisar de ferramentas externas como Insomnia ou Postman.
