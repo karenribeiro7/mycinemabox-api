@@ -8,6 +8,20 @@ const options = {
       version: "1.0.0",
       description: "API REST para gerenciamento de um catalogo de filmes",
     },
+    servers: [
+      {
+        url: "http://localhost:3000",
+      },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    }
   },
   apis: ["./src/docs/swagger.js"],
 };
@@ -57,7 +71,7 @@ module.exports = swaggerSpec;
 
 /**
  * @swagger
- * /users/register:
+ * /api/users/register:
  *   post:
  *     summary: Cadastra um novo usuario
  *     tags: [Users]
@@ -93,7 +107,7 @@ module.exports = swaggerSpec;
 
 /**
  * @swagger
- * /users/login:
+ * /api/users/login:
  *   post:
  *     summary: Realiza o login e retorna o token JWT
  *     tags: [Users]
@@ -129,10 +143,12 @@ module.exports = swaggerSpec;
 
 /**
  * @swagger
- * /genres:
+ * /api/genres:
  *   get:
  *     summary: Lista todos os generos
  *     tags: [Genres]
+ *     security:
+ *     - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de generos
@@ -166,13 +182,38 @@ module.exports = swaggerSpec;
  *       401:
  *         description: Token nao informado ou invalido
  */
+/** 
+ * @swagger
+ * /api/genres/{id}:
+ *   delete:
+ *     summary: Deleta um genero
+ *     tags: [Genres]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       204:
+ *         description: Genero deletado com sucesso
+ *       401:
+ *         description: Token nao informado ou invalido
+ *       404:
+ *         description: Genero nao encontrado
+
+ */
 
 /**
  * @swagger
- * /movies:
+ * /api/movies:
  *   get:
  *     summary: Lista todos os filmes
  *     tags: [Movies]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de filmes
@@ -225,10 +266,12 @@ module.exports = swaggerSpec;
 
 /**
  * @swagger
- * /movies/{id}:
+ * /api/movies/{id}:
  *   get:
  *     summary: Busca um filme por ID
  *     tags: [Movies]
+ *     security:
+ *      - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

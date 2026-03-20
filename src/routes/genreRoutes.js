@@ -1,10 +1,12 @@
 const { Router } = require('express');
-const { listGenres, createGenre } = require('../controllers/genreController');
+const { listGenres, createGenre, deleteGenre } = require('../controllers/genreController');
 const authMiddleware = require('../middlewares/authMiddleware');
+const adminMiddleware = require('../middlewares/adminMiddleware');
 
 const router = Router();
 
-router.get('/genres', listGenres);
-router.post('/genres', authMiddleware, createGenre);
+router.get('/genres', authMiddleware, listGenres);
+router.post('/genres', authMiddleware, adminMiddleware, createGenre);
+router.delete('/genres/:id', authMiddleware, adminMiddleware, deleteGenre);
 
 module.exports = router;

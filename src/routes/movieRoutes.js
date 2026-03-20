@@ -4,9 +4,9 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = Router();
 
-router.get('/movies', listMovies);
+router.get('/movies', authMiddleware, listMovies);
 router.post('/movies', authMiddleware, createMovie);
-router.get('/movies/:id', getMovie);
+router.get('/movies/:id', authMiddleware, getMovie);
 router.put('/movies/:id', authMiddleware, updateMovie);
 router.delete('/movies/:id', authMiddleware, deleteMovie);
 

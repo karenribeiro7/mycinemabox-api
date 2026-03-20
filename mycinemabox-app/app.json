@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "name": "mycinemabox-app",
+    "slug": "mycinemabox-app",
+    "version": "1.0.0",
+    "orientation": "portrait"
+  }
+}

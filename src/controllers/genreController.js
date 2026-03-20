@@ -30,7 +30,30 @@ async function createGenre(req, res) {
     res.status(201).json(genre);
 }
 
+async function deleteGenre(req, res) {
+    const { id } = req.params;
+
+    const genre = await prisma.genre.findUnique({
+        where: {
+            id: parseInt(id),
+        },
+    });
+
+    if (!genre) {
+        return res.status(404).json({ error: 'Genero nao encontrado' });
+    }
+
+    await prisma.genre.delete({
+        where: {
+            id: parseInt(id),
+        },
+    });
+
+    res.status(200).json({ message: 'Genero deletado com sucesso' });
+}
+
 module.exports = {
     listGenres,
     createGenre,
+    deleteGenre,
 };
