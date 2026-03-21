@@ -20,6 +20,25 @@ API REST para gerenciamento de filmes e reviews, permitindo cadastrar, listar, a
 
 ```
 mycinemabox/
+├── mycinemabox-app/
+│   ├── assets/
+│   ├── src/
+│   ├── context/
+│   │   │   └── AuthContext.js
+│   │   ├── routes/
+│   │   │   └── AppRoutes.js
+│   │   ├── screens/
+│   │   │   ├── LoginScreen.js
+│   │   │   ├── MovieDetailScreen.js
+│   │   │   ├── MovieFormScreen.js
+│   │   │   ├── MovieListScreen.js
+│   │   │   ├── RegisterScreen.js
+│   │   │   ├── WelcomeScreen.js
+│   │   │   └── authMiddleware.js
+│   │   ├── service/
+│   │   │   └── api.js
+│   ├── App.js
+│   └── index.js
 ├── prisma/
 │   ├── schema.prisma
 │   └── dev.db
