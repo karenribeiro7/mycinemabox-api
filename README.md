@@ -138,3 +138,27 @@ Para testar os endpoints protegidos, clique no botao `Authorize` e informe o tok
 ```
 Bearer token_jwt
 ```
+---
+
+## Telas
+
+### Inicial
+<img src="mycinemabox-app/assets/foto%201.jpeg" width="250" />
+
+### Login
+<img src="mycinemabox-app/assets/foto%202.jpeg" width="250" />
+
+### Cadastro
+<img src="mycinemabox-app/assets/foto%203.jpeg" width="250" />
+
+### Lista de Filmes
+<img src="mycinemabox-app/assets/foto%204.jpeg" width="250" />
+
+### Formulario de Filme
+<img src="mycinemabox-app/assets/foto%205.jpeg" width="250" />
+
+### Detalhe do Filme
+<img src="mycinemabox-app/assets/foto%206.jpeg" width="250" />
+
+### Aviso de Exclusao
+<img src="mycinemabox-app/assets/foto%207.jpeg" width="250" />
