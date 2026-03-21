@@ -1,11 +1,14 @@
 # MyCinemaBox 
 
-API REST para gerenciamento de filmes e reviews, permitindo cadastrar, listar, atualizar e deletar filmes e generos. A API tem autenticacao JWT para proteger as rotas de escrita.
+Aplicacao completa para gerenciamento de filmes e reviews pessoal. Cada usuario possui sua propria lista de filmes, podendo cadastrar, avaliar, comentar e organizar por genero.
+
+O projeto e composto por uma API REST em Node.js e um aplicativo mobile em React Native.
 
 ---
 
 ## Tecnologias
 
+### Backend
 - Node.js
 - Express
 - Prisma ORM
@@ -13,6 +16,12 @@ API REST para gerenciamento de filmes e reviews, permitindo cadastrar, listar, a
 - JSON Web Token
 - Bcryptjs
 - Swagger
+
+### App
+- React Native
+- Expo
+- Axios
+- React Navigation
 
 ---
 
@@ -100,6 +109,44 @@ npm run dev
 
 A API estara disponivel em `http://localhost:3000`.
 
+### App
+
+Entre na pasta do app:
+
+```bash
+cd mycinemabox-app
+```
+
+Instale as dependencias:
+
+```bash
+npm install
+```
+
+Crie o arquivo `.env` na raiz do app com o seguinte conteudo:
+
+```
+API_URL=http://SEU_IP:3000/api
+```
+
+Para descobrir seu IP rode no terminal:
+
+```bash
+# Windows
+ipconfig
+
+# Mac/Linux
+ifconfig
+```
+
+Rode o app:
+
+```bash
+npx expo start
+```
+
+Escaneie o QR code com o app Expo Go no celular.
+
 ---
 
 ## Autenticacao
@@ -118,25 +165,26 @@ Authorization: Bearer token_jwt
 
 | Metodo | Rota | Descricao | Autenticacao |
 |--------|------|-----------|--------------|
-| POST | /users/register | Cadastra um usuario | Nao |
-| POST | /users/login | Realiza login e retorna o token | Nao |
+| POST | /api/users/register | Cadastra um usuario | Nao |
+| POST | /api/users/login | Realiza login e retorna o token | Nao |
 
 ### Generos
 
 | Metodo | Rota | Descricao | Autenticacao |
 |--------|------|-----------|--------------|
-| GET | /genres | Lista todos os generos | Nao |
-| POST | /genres | Cria um genero | Sim |
+| GET | /api/genres | Lista todos os generos | Sim |
+| POST | /api/genres | Cria um genero | Sim - Admin |
+| DELETE | /api/genres/:id | Deleta um genero | Sim - Admin |
 
 ### Filmes
 
 | Metodo | Rota | Descricao | Autenticacao |
 |--------|------|-----------|--------------|
-| GET | /movies | Lista todos os filmes | Nao |
-| GET | /movies/:id | Busca um filme por ID | Nao |
-| POST | /movies | Cria um filme | Sim |
-| PUT | /movies/:id | Atualiza um filme | Sim |
-| DELETE | /movies/:id | Deleta um filme | Sim |
+| GET | /api/movies | Lista os filmes do usuario | Sim |
+| GET | /api/movies/:id | Busca um filme por ID | Sim |
+| POST | /api/movies | Cria um filme | Sim |
+| PUT | /api/movies/:id | Atualiza um filme | Sim |
+| DELETE | /api/movies/:id | Deleta um filme | Sim |
 
 ---
 
