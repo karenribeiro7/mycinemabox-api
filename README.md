@@ -1,6 +1,6 @@
-# MyCinemaBox - Catalogo de Filmes
+# MyCinemaBox 
 
-API REST para gerenciamento de um catalogo de filmes, permitindo cadastrar, listar, atualizar e deletar filmes e generos. A API tem autenticacao JWT para proteger as rotas de escrita.
+API REST para gerenciamento de filmes e reviews, permitindo cadastrar, listar, atualizar e deletar filmes e generos. A API tem autenticacao JWT para proteger as rotas de escrita.
 
 ---
 
